@@ -1,7 +1,7 @@
 # cache-meter
 
 A **read-only** measurement recorder for the suite-wide prefix-churn / cache-ratio
-gate ([#338](https://github.com/psmfd/pi_config/issues/338), [ADR-0034](../../../adrs/0034-cache-ratio-measurement.md)).
+gate (#338, [ADR-0034](https://github.com/psmfd/pi-config/blob/main/adrs/0034-cache-ratio-measurement.md)).
 Provider prompt caching prices cached input tokens ~10× below fresh; any feature
 that rewrites the cached message **prefix** on each call invalidates the cache
 forward and can cost more than it removes. This extension captures the per-turn
