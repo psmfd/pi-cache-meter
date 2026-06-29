@@ -7,6 +7,14 @@ that rewrites the cached message **prefix** on each call invalidates the cache
 forward and can cost more than it removes. This extension captures the per-turn
 token usage needed to verify our extensions don't do that.
 
+## Install
+
+```sh
+pi install git:github.com/psmfd/pi-cache-meter
+```
+
+Try it first without installing: `pi -e git:github.com/psmfd/pi-cache-meter`.
+
 ## What it does
 
 When `CACHE_METER_CONFIG` is set, the `message_end` handler appends one JSONL
