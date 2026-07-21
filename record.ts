@@ -11,7 +11,8 @@ import type { AssistantMessageLike, TurnRecord } from "./types.ts";
 export interface RecordContext {
   readonly ts: string;
   readonly turn: number;
-  readonly provider: string;
+  /** Provider fallback when the message omits its own `provider`. */
+  readonly providerFallback: string;
   readonly config: string;
 }
 
@@ -23,7 +24,10 @@ export function buildRecord(message: AssistantMessageLike | undefined, ctx: Reco
     ts: ctx.ts,
     turn: ctx.turn,
     model: message.model ?? "unknown",
-    provider: ctx.provider,
+    // Read provider from the message so model+provider are atomic — a mid-session
+    // model switch (e.g. auto-router) must not attribute this turn's usage to the
+    // session's *current* provider. Fall back to ctx only when the message omits it.
+    provider: message.provider ?? ctx.providerFallback,
     input: numberOr(usage.input, 0),
     cacheRead: numberOr(usage.cacheRead, 0),
     cacheWrite: numberOr(usage.cacheWrite, 0),

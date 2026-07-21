@@ -52,7 +52,9 @@ export default function cacheMeter(pi: ExtensionAPI): void {
       const record = buildRecord(message, {
         ts: new Date().toISOString(),
         turn,
-        provider: resolveProvider(ctx),
+        // Fallback only — buildRecord prefers the message's own provider so a
+        // mid-session model switch is attributed to the turn that produced it.
+        providerFallback: resolveProvider(ctx),
         config,
       });
       if (record) await appendTurn(record);

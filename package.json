@@ -1,6 +1,6 @@
 {
   "name": "@psmfd/pi-cache-meter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pi extension: read-only per-turn token-usage recorder (JSONL) for prompt-cache hit-ratio measurement",
   "type": "module",
   "license": "MIT",

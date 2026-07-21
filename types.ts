@@ -26,6 +26,8 @@ export interface MessageUsage {
 export interface AssistantMessageLike {
   readonly role: string;
   readonly model?: string;
+  /** Message-level provider (read atomically with `model`, not from ctx). */
+  readonly provider?: string;
   readonly usage?: MessageUsage;
 }
 
