@@ -35,6 +35,13 @@ the session's current model.
 **Inert by default.** With `CACHE_METER_CONFIG` unset the extension registers
 nothing and records nothing — zero overhead in normal sessions.
 
+**Whole-tree coverage under strict wrappers.** `CACHE_METER_CONFIG` is on the
+subagent sanitizer's strict `BASE_ALLOWLIST` (ADR-0114, #760), so a measurement
+that spans subagents arms the recorder in every child `pi` process and the
+cache-ratio gate sees subagent turns — not just the orchestrator's. Without that
+carve-out, `env-strict: true` wrappers would strip the var and silently
+undercount prefix churn.
+
 **Session indicator + turn reset.** When metering is active and a UI is attached
 (`ctx.hasUI`), `session_start` shows a footer status indicator
 (`📊 metering <config>`) for the whole session and resets the per-session turn
