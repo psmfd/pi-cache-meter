@@ -1,3 +1,6 @@
+// PI-EXTENSION-CAPABILITY: no-registerTool
+// Gated by validate.sh 6b-quinquies (ADR-0139): the declaration and the code must agree.
+
 /**
  * cache-meter — read-only prefix-churn / cache-ratio recorder (issue #338).
  *
